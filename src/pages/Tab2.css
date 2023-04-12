@@ -1,0 +1,46 @@
+.bar2{
+    display: flex;
+    justify-content: space-between;
+    alignItems: center;
+    width: 100%
+}
+.title2{
+    display: block;
+    width: 5.5rem;
+    flex: 1;
+    margin-top: -1.8rem;
+    margin-left:50%;
+    transform: translate(-45%,0px);
+}
+
+.form2{
+    width:80%;
+    margin:0 auto;
+    font-size: 3rem;
+}
+.box2{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.cart{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    height: 18vh;
+    position:relative;
+}
+.Button{
+   width:2rem;
+   height:1.5rem
+}
+.total{
+    width:108%;
+    margin: 0 auto 0 0.5rem;
+    font-size: 3rem;
+}
+.card2{
+    margin: 2rem auto 0;
+    width:85%;
+    border-radius:20px;
+}

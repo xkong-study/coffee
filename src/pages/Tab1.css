@@ -1,0 +1,28 @@
+.adm-capsule-tabs-tab-active{
+    background-color:#2D3E67;
+}
+.card{
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: 1rem auto 0;
+}
+.run{
+    color: #3987E6;
+    position: relative;
+    display: flex;
+    left: 50%;
+    alignItems: center;
+    fontWeight: bold;
+    animation: move-right 1s ease-in-out forwards;
+}
+
+@keyframes move-right {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}
