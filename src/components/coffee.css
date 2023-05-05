@@ -7,11 +7,23 @@
     color: var(--adm-color-success);
 }
 
-.icon{
-    width:1.5rem;
-    height:1.1rem;
-    marginBottom:.5rem
+.like{
+    width: 1.5rem;
+    height: 1.1rem;
+    margin-bottom: .5rem;
 }
+
+
+.icon {
+    color: black;
+    font-weight: bolder;
+}
+
+.icons {
+    color: #ff5f72;
+    font-weight: bolder;
+}
+
 .order{
     cursor: pointer;
 }

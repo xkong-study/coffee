@@ -10,6 +10,7 @@ export default function Coffee({i,price}) {
     const [arr,setArr] = useState([])
     const [clicked, setClicked] = useState(Number(localStorage.getItem(`key${price}`)));
     const dispatch = useDispatch()
+    const [style,setStyle]=useState('icon')
     const handleClick = (e) => {
             e.stopPropagation(); // 阻止事件冒泡
             setClicked(clicked=>clicked + 1);
@@ -27,11 +28,32 @@ export default function Coffee({i,price}) {
         localStorage.setItem(`key${price}`,clicked)
     }, [clicked]);
 
+    let count = -1
+    const change=()=>{
+        switch (style) {
+            case 'icon':
+                let count = Number(localStorage.getItem('length'))+1
+                localStorage.setItem('length',count)
+                localStorage.setItem(`save${count}`,i)
+                console.log(count)
+                setStyle('icons');
+                break;
+            case 'icons':
+                let num = Number(localStorage.getItem('length'))-1
+                localStorage.setItem('length',num)
+                console.log(num)
+                setStyle('icon');
+                break;
+            default:
+                break;
+        }
+    }
+
     return (
         <Card
             title={
-                <div className="icon">
-                    <UilHeart/>
+                <div className='like' onClick={change}>
+                    <UilHeart className={style}/>
                 </div>
             }
             style={{ borderRadius: '16px',borderColor:"black",width:"48%",marginBottom:"1rem"}}

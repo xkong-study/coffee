@@ -1,11 +1,19 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './Tab3.css';
 import {UilAngleLeftB, UilCreditCard, UilUser} from '@iconscout/react-unicons'
-import {Input} from "antd-mobile";
+import {Button, Input, Result} from "antd-mobile";
 import {useState} from "react"
+import {SmileOutline} from "antd-mobile-icons";
 
 const Tab3: React.FC = () => {
   const [value, setValue] = useState('')
+  const [number, setNumber] = useState('')
+  const [pay,setPay] = useState(false)
+  const submit=()=>{
+      setPay(!pay)
+      localStorage.setItem('number',number)
+      localStorage.setItem('user',value)
+  }
   return (
     <IonPage>
       <IonHeader>
@@ -17,6 +25,14 @@ const Tab3: React.FC = () => {
       <IonContent fullscreen>
           <img class="card1" src="https://t4.ftcdn.net/jpg/02/88/19/51/360_F_288195176_byYDO2Zo7sJaYgqmPKUjEtIqlfmYHZfj.jpg" alt=""/>
           <div class="form">
+              {
+                  pay==true?
+                      <Result
+                          icon={<SmileOutline />}
+                          status='success'
+                          title='Bind Success'
+                      />:null
+              }
           <h6>Card Holder Name</h6>
               <div class="box">
               <Input
@@ -33,9 +49,9 @@ const Tab3: React.FC = () => {
               <div className="box">
                   <Input
                       placeholder="0000 0000 0000 0000"
-                      value={value}
+                      value={number}
                       onChange={val => {
-                          setValue(val)
+                          setNumber(val)
                       }}
                   />
                   <UilCreditCard style={{
@@ -47,8 +63,8 @@ const Tab3: React.FC = () => {
                       marginTop: ".9rem"
                   }}/>
               </div>
+              <Button style={{width:'100%',height:'100%',borderRadius:'25px',marginTop:'3rem',backgroundColor:'#8E7321',color:'white',textAlign:'center'}} onClick={submit}>Bind</Button>
           </div>
-
       </IonContent>
     </IonPage>
   );

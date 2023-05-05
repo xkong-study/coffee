@@ -26,3 +26,10 @@
         transform: translateY(100%);
     }
 }
+.title3{
+    display: block;
+    width: 6rem;
+    flex: 1;
+    margin-left:50%;
+    transform: translate(-45%,0px);
+}

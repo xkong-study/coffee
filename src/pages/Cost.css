@@ -1,0 +1,13 @@
+.title_cost{
+    display: block;
+    width: 7rem;
+    flex: 1;
+    margin-top: -1.8rem;
+    margin-left:50%;
+    transform: translate(-45%,0px);
+}
+.total1{
+    width:108%;
+    margin: 10px 5% auto;
+    font-size: 3rem;
+}

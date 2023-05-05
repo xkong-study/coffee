@@ -1,4 +1,4 @@
-import { Redirect, Route } from 'react-router-dom';
+import {Route, withRouter, useLocation} from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -10,12 +10,15 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { useLocation } from "react-router-dom";
-import {add, cart, home, idCard} from 'ionicons/icons';
+import { personAdd, cart, home, idCard} from 'ionicons/icons';
+import Bill from './pages/Bill';
+import Cost from './pages/Cost'
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
-
+import Tab4 from './pages/Tab4';
+import Login from './pages/Login';
+import Card from './pages/Card';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -41,6 +44,7 @@ import {useEffect, useState} from "react";
 setupIonicReact();
 const App: React.FC = () => {
   const [shouldReload, setShouldReload] = useState(false);
+
   useEffect(() => {
     if (shouldReload) {
       window.location.reload();
@@ -61,8 +65,20 @@ const App: React.FC = () => {
           <Route path="/tab3">
             <Tab3 />
           </Route>
+          <Route path="/tab4">
+            <Tab4 />
+          </Route>
+          <Route path="/bill">
+          <Bill />
+          </Route>
+          <Route path="/Cost">
+            <Cost />
+          </Route>
+          <Route path="/Card">
+            <Card />
+          </Route>
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Login/>
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
@@ -74,9 +90,13 @@ const App: React.FC = () => {
             <IonIcon aria-hidden="true" icon={cart} />
             <IonLabel>Cart</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
+          <IonTabButton tab="tab3" href="/tab3" onClick={() => setShouldReload(true)}>
             <IonIcon aria-hidden="true" icon={idCard} />
             <IonLabel>Shop</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="tab4" href="/tab4" onClick={() => setShouldReload(true)}>
+            <IonIcon aria-hidden="true" icon={personAdd} />
+            <IonLabel>User</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

@@ -1,17 +1,20 @@
 import {IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from '@ionic/react';
 import {UilCreditCard, UilMinus, UilPlus, UilShoppingCart, UilUser} from '@iconscout/react-unicons'
 import './Tab2.css';
-import {Button, CapsuleTabs, Card, Input} from "antd-mobile";
+import {Button, CapsuleTabs, Card, Input, ProgressCircle} from "antd-mobile";
 import coffee from '../components/CoffeeCoupon.png';
 import {UilMultiply} from '@iconscout/react-unicons'
 import {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store";
 import {Payment0, Payment1, Payment2, Payment3} from "../store/reducer";
+import { Result } from 'antd-mobile'
+import { SmileOutline } from 'antd-mobile-icons'
 
 const Tab2: React.FC = () => {
     const keys = Object.keys(localStorage);
     const id_array = []
+    const [pay,setPay] = useState(false)
     keys.forEach((item)=>{
         if(item[0]=='k'){
             id_array.push(item[3])
@@ -25,6 +28,8 @@ const Tab2: React.FC = () => {
 
     const [total,setTotal] = useState(0)
     const [payment_total,setPayment_total] = useState(total)
+
+
     useEffect(()=>{
         setTotal(value0+value1+value2+value3)
     },[value0,value1,value2,value3])
@@ -40,6 +45,13 @@ const Tab2: React.FC = () => {
         setPayment_total(total+count)
     },[count,total])
 
+
+    if(pay==true){
+        console.log(pay)
+        localStorage.setItem('cost',payment_total)
+        localStorage.setItem('coupon',count)
+        localStorage.setItem('total',total)
+    }
     const Card_Coffee = ({payment, Image, id}) => {
         const [key, setKey] = useState(Number(localStorage.getItem(`key${id}`)))
         const [pay, setPay] = useState(payment * key)
@@ -123,13 +135,20 @@ const Tab2: React.FC = () => {
                     </CapsuleTabs.Tab>
                     <CapsuleTabs.Tab title='apply' key='apply'>
                         <div className="total">
-                            <h6>Total: ${total}</h6>
+                            {
+                                pay==true?
+                                    <Result
+                                        icon={<SmileOutline />}
+                                        status='success'
+                                        title='Pay Success'
+                                        style={{marginLeft:'-3.5rem'}}
+                                    />:null
+                            }
+                            <h6>Total: €{total}</h6>
                             <h6>Coupon: {count}</h6>
-                            <h6>Need to Pay: ${payment_total}</h6>
-                            <h6>Use card:</h6>
-                            <img className="card2"
-                                 src="https://t4.ftcdn.net/jpg/02/88/19/51/360_F_288195176_byYDO2Zo7sJaYgqmPKUjEtIqlfmYHZfj.jpg"
-                                 alt=""/>
+                            <h6>Need to Pay: €{payment_total}</h6>
+                            <h6>Use card:{localStorage.getItem('number')}</h6>
+                            <Button className="card2" style={{cursor:'pointer',width:'80%',height:"110%",marginLeft:'45%',transform:'translate(-50%,0px)',backgroundColor:'#2D3E67',borderRadius:'25px',color:'white'}} onClick={()=>setPay(!pay)}>pay</Button>
                         </div>
                     </CapsuleTabs.Tab>
                 </CapsuleTabs>
