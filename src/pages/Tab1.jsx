@@ -31,7 +31,7 @@ const Tab1: React.FC = () => {
             <IonContent fullscreen>
                 <div className="card">
                     <div style={{display: "flex", flexDirection: "row", alignItems: "center",width:"100%"}}>
-                        <div><IonSearchbar style={{width: "100%"}}/></div>
+                        <div><IonSearchbar style={{width: "20dp"}}/></div>
                         <div><UilCoffee style={{color: "#CAB43A", width: "2rem", height: "2rem", marginLeft: "1rem"}}/>
                         </div>
                     </div>
